@@ -1,9 +1,9 @@
 # Enrolment
-# smu 수강신청 보조 웹서버 | python3.x 이상 버전에서 실행
+## smu 수강신청 보조 웹서버 | python3.x 이상 버전에서 실행
+<hr/>
+<pre><code>git clone https://github.com/201311105/Enrolment</code></pre>
 
-git clone https://github.com/201311105/Enrolment
-
-cd Enrolment
+<code>cd Enrolment</code>
 
 pip install -r requirements.txt
 
