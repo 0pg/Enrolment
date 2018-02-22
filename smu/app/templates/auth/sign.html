@@ -1,0 +1,107 @@
+
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+	<title>상명대 수강신청</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}" />
+	<!--[if lte IE 9]><link rel="{{url_for('static',filename='css/ie9.css')}}" /><![endif]-->
+	<!--[if lte IE 8]><link rel="{{url_for('static',filename='css/ie8.css')}}" /><![endif]-->
+
+</head>
+<body>
+	<div id="page-wrapper" style="">
+
+		<!-- Header -->
+		<header id="header">
+			<h1 id="logo"><a href="/">상명대 수강신청</a></h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="inquiry.html">문의사항</a></li>
+				</ul>
+			</nav>
+		</header>
+<!--
+		{% with messages = get_flashed_messages() %}
+                                        {% if messages %}
+                                                {% for message in messages %}
+                                                        <script>
+                                                        alert('Error: '+{{ message |tojson}})
+                                                        </script>
+                                                {% endfor %}
+                                        {% endif %}
+                                {% endwith %}
+!-->
+<!-- Main -->
+		<div id="main" class="wrapper style1" >
+			<div class="container">
+				<header class="major">
+					<h2>{{username}}</h2>
+					<h1>학수번호-분반 입력</h1>
+					<h1><output></output></h1>
+				</header>
+				<form action="/signing" method="post">
+				<!-- Content -->
+				<section id="content">
+					<div class="table-wrapper">
+						<input type="button" value="과목 추가" onclick="add_row()" style="max-width: 20%;max-height: 10%;float: right;outline: 0 ">
+						<!-- 수강신청 -->
+						<table class="alt">
+							<thead >
+								<th style="padding-top:30px">학수번호</th>
+								<th>분반</th>
+							</thead>
+							<tbody id="signing">
+								<tr style="padding: 20px">
+									<td width="70%"><input type="text" name="sub" onkeyup="javascript:SG()" maxlength="9" style="width: 100%" /></td>
+									<td width="30%"><input type="text" name="div" onkeyup="javascript:SG()" maxlength="2" style="width: 100%" /></td>
+								</tr>
+						 	</tbody>
+						</table>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<center><input type="submit" value="수강신청" style="max-width: 40%;height: auto"></center>
+</form>
+	<!-- Scripts -->
+	<script>
+	var alt;
+	var i=0;
+  function add_row() {
+	i++;
+    alt = document.getElementById('signing');
+    // var row = my_tbody.insertRow(0); // 상단에 추가
+    var row = alt.insertRow(); // 하단에 추가
+    row.onmouseover = function(){alt.clickedRowIndex=this.rowIndex};
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = '<td width="70%"><input type="text" name="sub" onkeyup="javascript:SG()" maxlength="9" /></td>'
+    cell2.innerHTML =  '<td width="=30%"><input type="text" name="div" onkeyup="javascript:SG()" /></td>'
+  }
+
+  function delete_row() {
+    alt.deleteRow(alt.clickedRowIndex); //clickedRowIndex - 클릭한 Row의 위치를 확인;
+  }
+
+</script>
+	<script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.scrolly.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.dropotron.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.scrollex.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/skel.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/util.js')}}"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+
+</body>
+</html>

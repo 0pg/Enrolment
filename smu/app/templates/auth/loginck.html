@@ -1,0 +1,72 @@
+
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+	<title>상명대 수강신청</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}" />
+	<!--[if lte IE 9]><link rel="{{url_for('static',filename='css/ie9.css')}}" /><![endif]-->
+	<!--[if lte IE 8]><link rel="{{url_for('static',filename='css/ie8.css')}}" /><![endif]-->
+
+</head>
+<body>
+	<div id="page-wrapper" style="">
+	
+		<!-- Header -->
+		<header id="header">
+			<h1 id="logo"><a href="/">상명대 수강신청</a></h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="inquiry.html">문의사항</a></li>
+				</ul>
+			</nav>
+		</header>
+		
+		<!-- Main -->
+		<div id="main" class="wrapper style1" >
+			<div class="container">
+				<header class="major">
+					<h2>수강신청 중...</h2>
+					<h1><output></output></h1>
+				</header>
+			<table class="alt">
+				<thead >
+					<th style="padding-top:30px">학수번호</th>
+					<th>분반</th>
+				</thead>
+				<tbody id='signing'>
+					<tr style="padding: 20px">
+					{% for i,j in subs,div %}
+						<td width="70%">{{i}}</td>
+						<td width="30%">{{j}}</td>
+					{% endfor %}
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</section>
+		</div>
+	</div>
+</div>			
+	<!-- Scripts -->
+
+</script>
+	<script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.scrolly.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.dropotron.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.scrollex.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/skel.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/util.js')}}"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+
+</body>
+</html>

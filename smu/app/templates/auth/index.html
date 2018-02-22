@@ -1,0 +1,86 @@
+{% extends 'auth/layout.html' %}
+{% block body %}
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+	<title>상명대 수강신청</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+</head>
+<body>
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1 id="logo"><a href="/">상명대 수강신청</a></h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="inquiry.html">문의사항</a></li>
+				</ul>
+			</nav>
+		</header>
+<!--                                {% with messages = get_flashed_messages() %}
+                                        {% if messages %}
+                                                {% for message in messages %}
+                                                        <script>
+                                                        alert('Error: '+{{ message |tojson}})
+                                                        </script>
+                                                {% endfor %}
+                                        {% endif %}
+                                {% endwith %}
+--!>
+		<!-- Main -->
+		<div id="main" class="wrapper style1">
+			<div class="container">
+				<header class="major">
+					<h2>수강신청</h2>
+					<h1>로그인 후 학수번호와 분반으로 수강신청 할 수 있습니다</h1>
+					<h1><output></output></h1>
+				</header>
+				<form action='/sign' method='POST'>
+				<!-- Content -->
+				<section id="content">
+					<div class="table-wrapper">
+						<!-- 수강신청 -->
+						<table class="alt">
+							</thead>
+								<tr>
+									<td>학번</td>
+									<td><input type="text" name="memid" onkeyup="javascript:SG()" maxlength="9" /></td>
+								</tr>
+								<tr>
+									<td>비밀번호</td>
+									<td><input type="password" name="pwd"  onkeyup="javascript:SG()" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+			</div>
+		<center><input type="submit" value="수강신청" ></center>
+		</div>
+	</div>
+</form>
+	<!-- Scripts -->
+	<script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.scrolly.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.dropotron.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery.scrollex.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/skel.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/util.js')}}"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+</body>
+</html>
+{% endblock %}
