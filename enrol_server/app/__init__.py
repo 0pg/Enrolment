@@ -1,5 +1,5 @@
 from flask import Flask, flash, g, request, render_template, url_for, redirect
-import smu, json
+import enrolment, json
 
 app = Flask(__name__)
 app.secret_key = 'random string'
