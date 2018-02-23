@@ -1,5 +1,5 @@
 # Enrolment
-## smu 수강신청 보조 웹서버 | ++python3.5 이상 버전에서 실행++
+## smu 수강신청 보조 웹서버 | __python3.5 이상 버전에서 실행__
 <hr/>
 웹서버를 실행하는데 필요한 패키지설치
 <pre><code>git clone https://github.com/201311105/Enrolment
