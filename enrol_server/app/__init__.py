@@ -1,9 +1,13 @@
 from flask import Flask, flash, g, request, render_template, url_for, redirect
-import enrolment, json
+from collections import OrderedDict
+import smu, json, requests, os
 
 app = Flask(__name__)
 app.secret_key = 'random string'
-s = 'none'
+proc = {}
+pids = {}
+sess = {}
+
 @app.route('/')
 def main():
 	return render_template('auth/index.html')
@@ -15,20 +19,21 @@ def login():
 		return redirect(url_for('main'))
 	memid = request.form['memid']
 	pwd = request.form['pwd']
-	
-	global s
 	s = smu.get_session(memid, pwd)
+	sess[memid] = s
 	if s in ("로그인 실패" ,"네트워크 오류", "페이지 오류"):
 		flash(s)
 		return redirect(url_for('main'))
 	name = smu.stdname(s)
-	return render_template('auth/sign.html', username=name[5], sess=s) 			
+	return render_template('auth/sign.html', username=name[5], memid=memid) 
 
 @app.route('/signing',methods=['GET','POST'])
-def sign():
+def sign(): 
 	if request.method == 'GET':
 		flash('로그인 하십시오')
 		return redirect(url_for('main'))
+	memid = request.form['memid']
+	s = sess[memid]
 	dic = {}
 	data = request.values
 	subs = (data.getlist('sub'))
@@ -36,19 +41,31 @@ def sign():
 	for i in range(0,len(subs)):
 		dic[subs[i]] = divs[i]
 	
-	smu.excute(s,subs,divs,len(subs))
+	pids[memid] = smu.excute(s, subs, divs, len(subs))
 
-	return render_template('auth/signing.html', subs=dic)
 	
-@app.route('/cancle')
+	return render_template('auth/signing.html', subs=dic, username=memid)
+
+	
+@app.route('/cancle', methods=['GET','POST'])
 def cancle():
-	if s is 'none' :
+	if request.method == 'GET' or request.form['memid'] not in sess.keys():
 		flash('로그인 하십시오')
 		return redirect(url_for('main'))
-	smu.pterminate()
-	s.close()
-	flash('취소하셨습니다')
+	memid = request.form['memid']
+	sess[memid].close()
+	res = []
+	for pid in pids[memid][1]:
+		res.append(pid.recv())
+	for pid in pids[memid][0]:
+		pid.terminate()
+		pid.join()
+	
+	for r in res:
+		flash(r)
+	
+	del(sess[memid])
 
 	return redirect(url_for('main'))
 
-
+ 

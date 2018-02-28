@@ -29,7 +29,7 @@ var sub, div
 </script>
 <body>
 	<div id="page-wrapper" style="">
-	
+		<form action='/cancle' method='POST'>
 		<!-- Header -->
 		<header id="header">
 			<h1 id="logo"><a href="/">상명대 수강신청</a></h1>
@@ -83,7 +83,8 @@ var sub, div
 		</div>
 	</div>
 </div>
-<center><input type='button' name='cancel' value='취소' style="max-width:40%;height: auto" onclick="location.href='/cancle'"></center>
+<input type='hidden' name='memid' value='{{username}}' />
+<center><input type='submit' name='cancel' value='취소' style="max-width:40%;height: auto"></center>
 </form>			
 	<!-- Scripts -->
 
